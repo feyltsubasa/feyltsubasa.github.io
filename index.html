@@ -86,7 +86,8 @@
 
 <h1>Hello World!</h1>
 
-<div style="height:70%">
+<div style="background-color: rgba(150,130,255,0.5); margin-left: 10%;margin-right: 10%;justify-content: center;">
+<div style="margin: 10%;">
 
 <!-- Slider main container -->
 
@@ -95,10 +96,10 @@
 
    <div class="swiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide"><img src="image/banner_word10.png"></div>
-    <div class="swiper-slide"><img src="image/banner_pic10.png"></div>
-    <div class="swiper-slide"><img src="image/banner_song10.png"></div>
-    <div class="swiper-slide"><img src="image/banner_other10.png"></div>
+    <div class="swiper-slide" style="margin:0 auto;text-align:center;"><img src="image/banner_word10.png"></div>
+    <div class="swiper-slide" style="margin:0 auto;text-align:center;"><img src="image/banner_pic10.png"></div>
+    <div class="swiper-slide" style="margin:0 auto;text-align:center;"><img src="image/banner_song10.png"></div>
+    <div class="swiper-slide" style="margin:0 auto;text-align:center;"><img src="image/banner_other10.png"></div>
   </div>
   <div class="swiper-pagination"></div>
    <div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper外面，需要自定义样式。-->
@@ -107,6 +108,7 @@
 </div>
 <script>
 var mySwiper = new Swiper('.swiper', {
+  
   speed:300,
   loop: true,
   autoplay : {
@@ -116,10 +118,13 @@ var mySwiper = new Swiper('.swiper', {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
+    pagination: {
+    el: '.swiper-pagination',
+  },
 })
 
 </script>
-</div>
+</div></div>
 
   </body>
 </html>
