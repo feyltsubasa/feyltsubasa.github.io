@@ -2,20 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="icon" href="image/logo.ico" type="image/x-icon" / >
+    <link rel="icon" href="image/logo.png" type="image/x-icon" / >
     <title>Feyltsubasa小站</title>
     
-
-    <link  rel="stylesheet"  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
+  </head>
+  
+  <body style="background-image:url('image/watermark.png'); background-repeat:repeat;background-size:10%  ;">
     <link  rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
-
-
-  </head>
-  <body>
 
     <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
@@ -73,6 +68,10 @@
         </li>
 
         <li class="nav-item">
+          <a class="nav-link disabled"><div  style="text-align: center; line-height:20px;font-size:100%;">曲<br>Song</div></a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="#"><div style="text-align: center; vertical-align: center; line-height:45px;font-size:100%;">Other</div></a>
         </li>
 
@@ -86,5 +85,41 @@
 </nav>
 
 <h1>Hello World!</h1>
+
+<div style="height:70%">
+
+<!-- Slider main container -->
+
+<link  rel="stylesheet"  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+   <div class="swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"><img src="image/banner_word10.png"></div>
+    <div class="swiper-slide"><img src="image/banner_pic10.png"></div>
+    <div class="swiper-slide"><img src="image/banner_song10.png"></div>
+    <div class="swiper-slide"><img src="image/banner_other10.png"></div>
+  </div>
+  <div class="swiper-pagination"></div>
+   <div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper外面，需要自定义样式。-->
+    <div class="swiper-button-next"></div><!--右箭头。如果放置在swiper外面，需要自定义样式。-->
+
+</div>
+<script>
+var mySwiper = new Swiper('.swiper', {
+  speed:300,
+  loop: true,
+  autoplay : {
+    delay:5000
+  },
+  navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+})
+
+</script>
+</div>
+
   </body>
 </html>
