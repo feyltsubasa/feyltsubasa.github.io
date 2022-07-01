@@ -66,61 +66,6 @@ includeHTML();
 <!-- main body -->
 
 <div class="container" >
-<div style="background-color: rgba(150,130,255,0.5); margin-left: 10%;margin-right: 10%;justify-content: center;" >
-<div style="  margin-top: 5%;margin-left: 15%;margin-right: 15%;">
-
-<!-- Slider main container -->
-
-<link  rel="stylesheet"  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
-   <div class="swiper ">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide"><img src="image/banner_word10.png" class="img-fluid"></div>
-    <div class="swiper-slide"><img src="image/banner_pic10.png" class="img-fluid"></div>
-    <div class="swiper-slide"><img src="image/banner_song10.png" class="img-fluid"></div>
-    <div class="swiper-slide"><img src="image/banner_other10.png" class="img-fluid"></div>
-  </div>
-
-  <div class="swiper-pagination"></div>
-   <div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper外面，需要自定义样式。-->
-    <div class="swiper-button-next"></div><!--右箭头。如果放置在swiper外面，需要自定义样式。-->
-
-</div>
-<script>
-var mySwiper = new Swiper('.swiper', {
-  
-  speed:300,
-  loop: true,
-  autoplay : {
-    delay:5000,
-     disableOnInteraction: false,
-  },
-  navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-    el: '.swiper-pagination',
-    clickable :true,
-
-  },
-})
-$('#bannerstop').click(function(){
-  mySwiper.autoplay.stop();
-})
-$('#bannerplay').click(function(){
-  mySwiper.autoplay.start();
-})
-</script>
-</div></div>
-
-
-<div style="background-color: rgba(150,130,255,1); margin-left: 10%;margin-right: 10%;justify-content: center;">
-<div style="margin: 3%;">
-<h1>Hello World!</h1>
-</div></div>
-
 
 
 
