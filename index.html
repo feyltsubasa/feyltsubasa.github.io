@@ -7,9 +7,16 @@
     
   </head>
   
+
+
+
+
   <body style="background-image:url('image/watermark.png'); background-repeat:repeat;background-size:10%  ;">
     <link  rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
     <nav class="navbar navbar-expand-lg bg-light">
@@ -60,19 +67,29 @@
       </form>
       -->
         <li class="nav-item">
-          <a class="nav-link" href="#"><div  style="text-align: center; line-height:20px;font-size:100%;">文<br>Word</div></a>
+          <a class="nav-link" href="https://feyltsubasa.github.io/word"><div  style="text-align: center; line-height:20px;font-size:100%;">文<br>Word</div></a>
         </li>
         
+       
+        <li class="w3-dropdown-hover ">
+          <a class="nav-link" href="https://feyltsubasa.github.io/draw"><div  style="text-align: center; line-height:20px;font-size:100%;">畫<br>Draw</div></a>
+           
+          <div style="z-index: 3;justify-content: center;" class="w3-dropdown-content w3-bar-block  ">
+      <a class="dropdown-item w3-bar-item w3-button" href="https://feyltsubasa.github.io/draw/byhand"><div  style="text-align: center; line-height:20px;font-size:100%;">手繪<br>By hand</div></a>
+      <a class="dropdown-item w3-bar-item w3-button" href="https://feyltsubasa.github.io/draw/electropainting"><div  style="text-align: center; line-height:20px;font-size:100%;">電繪<br>Electropainting</div></a>
+    </div>
+
+  
+        </li>
+     
+        
+
         <li class="nav-item">
-          <a class="nav-link" href="#"><div  style="text-align: center; line-height:20px;font-size:100%;">畫<br>Draw</div></a>
+          <a class="nav-link" href="https://feyltsubasa.github.io/song"><div  style="text-align: center; line-height:20px;font-size:100%;">曲<br>Song</div></a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link disabled"><div  style="text-align: center; line-height:20px;font-size:100%;">曲<br>Song</div></a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#"><div style="text-align: center; vertical-align: center; line-height:45px;font-size:100%;">Other</div></a>
+          <a class="nav-link" href="https://feyltsubasa.github.io/other"><div style="text-align: center; vertical-align: center; line-height:45px;font-size:100%;">Other</div></a>
         </li>
 
         <li class="nav-item">
@@ -85,9 +102,20 @@
 </nav>
 
 
+
+
+
+
+
+
+
+
+
+<!-- main body -->
+
 <div class="container" >
 <div style="background-color: rgba(150,130,255,0.5); margin-left: 10%;margin-right: 10%;justify-content: center;" >
-<div style="margin: 10%;">
+<div style="  margin-top: 5%;margin-left: 15%;margin-right: 15%;">
 
 <!-- Slider main container -->
 
@@ -101,6 +129,7 @@
     <div class="swiper-slide"><img src="image/banner_song10.png" class="img-fluid"></div>
     <div class="swiper-slide"><img src="image/banner_other10.png" class="img-fluid"></div>
   </div>
+
   <div class="swiper-pagination"></div>
    <div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper外面，需要自定义样式。-->
     <div class="swiper-button-next"></div><!--右箭头。如果放置在swiper外面，需要自定义样式。-->
@@ -112,7 +141,8 @@ var mySwiper = new Swiper('.swiper', {
   speed:300,
   loop: true,
   autoplay : {
-    delay:5000
+    delay:5000,
+     disableOnInteraction: false,
   },
   navigation: {
       nextEl: '.swiper-button-next',
@@ -120,17 +150,29 @@ var mySwiper = new Swiper('.swiper', {
     },
     pagination: {
     el: '.swiper-pagination',
+    clickable :true,
+
   },
 })
-
+$('#bannerstop').click(function(){
+  mySwiper.autoplay.stop();
+})
+$('#bannerplay').click(function(){
+  mySwiper.autoplay.start();
+})
 </script>
 </div></div>
 
 
 <div style="background-color: rgba(150,130,255,1); margin-left: 10%;margin-right: 10%;justify-content: center;">
-<div style="margin: 5%;">
+<div style="margin: 3%;">
 <h1>Hello World!</h1>
 </div></div>
+
+
+
+
+
 </div>
   </body>
 </html>
