@@ -65,10 +65,10 @@ includeHTML();
 
 <!-- main body -->
 <div class="container" >
-<div style="background-color: rgba(150,150,150,0.5); margin-left: 10%;margin-right: 10%;justify-content: center;" >
+<div style="background-color: rgba(200,200,200,0.3); margin-left:3%;margin-right: 3%;justify-content: center;" >
 
 
- <h2 style='align:center'>Gallery</h2>
+<p style='align:center'><h2 >Gallery</h2></p>
   <!-- main table for showing folder-->
   <table align="center" id="main_table"></table>
   
@@ -109,7 +109,7 @@ includeHTML();
     margin: auto;
     display: block;
     width: auto;
-    max-height: 600px;
+    max-height: 500px;
   }
 
   /* Caption of Modal Image */
@@ -218,13 +218,13 @@ for (let e in filename) {
 var fname="'"+filename[e]+"'"
 if (count < 4) {
   var cell = row.insertCell(0);
-cell.innerHTML +='<img height="250" onclick="modal1('+fname+','+file_no_in[e]+')" style="cursor:pointer" src="image/gallery/'+filename[e]+'/1.jpg"><p>'+filename[e]+'</p>';
+cell.innerHTML +='<img height="200" onclick="modal1('+fname+','+file_no_in[e]+')" style="cursor:pointer" src="image/gallery/'+filename[e]+'/1.jpg"><p>'+filename[e]+'</p>';
   count += 1;
 }  else {
 var row = table.insertRow(0);
 row.setAttribute("align", "center");
 var cell = row.insertCell(0);
-cell.innerHTML +='<img height="250" onclick="modal1('+fname+','+file_no_in[e]+')" style="cursor:pointer" src="image/gallery/'+filename[e]+'/1.jpg"><p>'+filename[e]+'</p>';
+cell.innerHTML +='<img height="200" onclick="modal1('+fname+','+file_no_in[e]+')" style="cursor:pointer" src="image/gallery/'+filename[e]+'/1.jpg"><p>'+filename[e]+'</p>';
   count = 0;
 }
 }
@@ -262,13 +262,13 @@ function modal1(folder,num){
   for (let i=1;i<=num;i++) {
     if (count < 4) {
       var cell2 = row2.insertCell(0);
- cell2.innerHTML +='<img width="100" onclick="bigger_photo(this);" style="cursor:pointer" src="image/gallery/'+folder+'/'+i+'.jpg"><p>'+i+'</p>';
+ cell2.innerHTML +='<img width="150" onclick="bigger_photo(this);" style="cursor:pointer" src="image/gallery/'+folder+'/'+i+'.jpg"><p>'+i+'</p>';
       count += 1;
 }  else {
   var row2 = table2.insertRow(0);
   row2.setAttribute("align", "center");
   var cell2 = row2.insertCell(0);
-  cell2.innerHTML +='<img width="100" onclick="bigger_photo(this);" style="cursor:pointer" src="image/gallery/'+folder+'/'+i+'.jpg"><p>'+i+'</p>';
+  cell2.innerHTML +='<img width="150" onclick="bigger_photo(this);" style="cursor:pointer" src="image/gallery/'+folder+'/'+i+'.jpg"><p>'+i+'</p>';
       count = 0;
 }
   }
