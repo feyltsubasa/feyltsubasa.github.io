@@ -65,107 +65,118 @@ includeHTML();
 
 <!-- main body -->
 <div class="container" >
-<div style="background-color: rgba(250,250,250,0.8); margin-left:3%;margin-right: 3%;justify-content: center;" >
+<div style="background-color: rgba(255,255,255,0.8); margin-left:3%;margin-right: 3%;justify-content: center;" >
 
 
-<div style='align:center'><h2 >Gallery</h2></div>
+
+<div class="w3-container">
+  <h2>Gallery</h2>
   <!-- main table for showing folder-->
-  <table align="center" id="main_table"></table>
   
+  <div style="display: flex;flex-wrap: wrap;" id="main_table" ></div>
+  
+  <!-- testing button
+  <button onclick="modal1('qwe',3)">Open Modal</button>
+  <button onclick="modal1('1',2)">Open Modal</button>
+  -->
+  
+
+
        
        
 <!-- Css of model 2 to show single photo-->
        
        
-              
-<style>
-  body {font-family: Arial, Helvetica, sans-serif;}
+       
+       
+       <style>
+body {font-family: Arial, Helvetica, sans-serif;}
 
-  #myImg {
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-  #myImg:hover {opacity: 0.7;}
+#myImg:hover {opacity: 0.7;}
 
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-  }
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
 
-  /* Modal Content (image) */
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: auto;
+  max-height: 600px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
   .modal-content {
-    margin: auto;
-    display: block;
-    width: auto;
-    max-height: 500px;
+    width: 100%;
   }
-
-  /* Caption of Modal Image */
-  #caption {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-    text-align: center;
-    color: #ccc;
-    padding: 10px 0;
-    height: 150px;
-  }
-
-  /* Add Animation */
-  .modal-content, #caption {  
-    -webkit-animation-name: zoom;
-    -webkit-animation-duration: 0.6s;
-    animation-name: zoom;
-    animation-duration: 0.6s;
-  }
-
-  @-webkit-keyframes zoom {
-    from {-webkit-transform:scale(0)} 
-    to {-webkit-transform:scale(1)}
-  }
-
-  @keyframes zoom {
-    from {transform:scale(0)} 
-    to {transform:scale(1)}
-  }
-
-  /* The Close Button */
-  .close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  /* 100% Image Width on Smaller Screens */
-  @media only screen and (max-width: 700px){
-    .modal-content {
-      width: 100%;
-    }
-  }
+}
 </style>
 
 
@@ -178,14 +189,14 @@ includeHTML();
        
        
 <h2 id=modaltitle>Title</h2>
-<p id=modalcontent><table id="mt"><tr><td></td></tr></table></p>
+      <p id=modalcontent><div style=" display: flex;flex-wrap: wrap;" id="mt" ></div></p>
 
 
 
-<div id="myModal" class="modal">
+<div  id="myModal" class="modal">
   <span class="close" onclick="close_model()">&times;</span>
   <img class="modal-content" id="img01">
-  <div id="caption"></div>
+  <div  id="caption"></div>
 </div>
 
 
@@ -209,70 +220,47 @@ file_no_in[file_no_in.length]=page_of_folder[x]
 }
 ;
 
-var table = document.getElementById("main_table");
-var row = table.insertRow(0);
-row.setAttribute("align", "center");
 
-var count = 0;
+
 for (let e in filename) {
 var fname="'"+filename[e]+"'"
-if (count < 4) {
-  var cell = row.insertCell(0);
-cell.innerHTML +='<img width="100" onclick="modal1('+fname+','+file_no_in[e]+')" style="cursor:pointer" src="image/gallery/'+filename[e]+'/1.jpg"><p>'+filename[e]+'</p>';
-  count += 1;
-}  else {
-var row = table.insertRow(0);
-row.setAttribute("align", "center");
-var cell = row.insertCell(0);
-cell.innerHTML +='<img width="100" onclick="modal1('+fname+','+file_no_in[e]+')" style="cursor:pointer" src="image/gallery/'+filename[e]+'/1.jpg"><p>'+filename[e]+'</p>';
-  count = 0;
-}
+
+  
+document.getElementById("main_table").innerHTML +='<div style="margin-left: auto; margin-right: auto;" align="center"><img height="250" onclick="modal1('+fname+','+file_no_in[e]+')" style="cursor:pointer" src="image/gallery/'+filename[e]+'/1.png"><p>'+filename[e]+'</p></div>';
+  
 }
 
 }
 
 
 
-xmlhttp.open("GET", "image/gallery/photo_index.txt");
+xmlhttp.open("GET", "photo_index.txt");
 xmlhttp.send();
   
   
   //find photo in folder
 function modal1(folder,num){
 
-  var x = document.getElementById("mt").rows.length;
-  for(let i =0;i<x;i++){
-    document.getElementById("mt").deleteRow(0);
+  
+  
+  document.getElementById("mt").innerHTML=''
 
-  };
+  
   document.getElementById('model_for_one_folder').style.display='block';
   var mtitle=folder;
   var mphoto=num;
   document.getElementById('modaltitle').innerHTML=folder+'('+num+')';
 
-  var table2 = document.getElementById("mt");
-  table2.setAttribute("align", "center");
-  table2.setAttribute("valign", "bottom");
+  
 
-  var row2 = table2.insertRow(0);
-  row2.setAttribute("align", "center");
-  row2.setAttribute("valign", "bottom");
-
-  var count = 0;
   for (let i=1;i<=num;i++) {
-    if (count < 4) {
-      var cell2 = row2.insertCell(0);
- cell2.innerHTML +='<img height="100" onclick="bigger_photo(this);" style="cursor:pointer" src="image/gallery/'+folder+'/'+i+'.jpg"><p>'+i+'</p>';
-      count += 1;
-}  else {
-  var row2 = table2.insertRow(0);
-  row2.setAttribute("align", "center");
-  var cell2 = row2.insertCell(0);
-  cell2.innerHTML +='<img height="100" onclick="bigger_photo(this);" style="cursor:pointer" src="image/gallery/'+folder+'/'+i+'.jpg"><p>'+i+'</p>';
-      count = 0;
+    
+
+ document.getElementById("mt").innerHTML +='<div style="margin: auto" align="center"><img width="100" onclick="bigger_photo(this);" style="cursor:pointer" src="image/gallery/'+folder+'/'+i+'.png"><p>'+i+'</p></div>';
+      
 }
   }
-}
+
 
   //show one photo
 
@@ -307,8 +295,11 @@ function close_model() {
     </div>
   </div>
 </div>
-  </div>
-</div>
+            
+</body>
+      </div>
+    </div>
+ 
             
 </body>
 </html>
