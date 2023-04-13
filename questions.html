@@ -19,10 +19,10 @@
             
             // 顯示問題描述和選項
             document.getElementById('question').textContent = questions[currentQuestion].question;
-            document.getElementById('option1').textContent = options[0];
-            document.getElementById('option2').textContent = options[1];
-            document.getElementById('option3').textContent = options[2];
-            document.getElementById('option4').textContent = options[3];
+            document.getElementById('option1-label').textContent = options[0];
+            document.getElementById('option2-label').textContent = options[1];
+            document.getElementById('option3-label').textContent = options[2];
+            document.getElementById('option4-label').textContent = options[3];
           }
           
           // 打亂陣列順序
@@ -61,40 +61,24 @@
           // 處理提交表單事件
           document.getElementById('quiz').addEventListener('submit', (event) => {
             event.preventDefault();
-            const selectedOption = document.querySelector('input[name="option"]:checked').value;
-            checkAnswer(selectedOption);
+            const selectedOption = document.querySelector('input[name="option"]:checked');
+            if (selectedOption) {
+              checkAnswer(selectedOption.value);
+            }
           });
         });
     </script>
   </head>
   <body>
     <h1>多項選擇題</h1>
-    <div id="quiz">
+    <form id="quiz">
       <p id="question"></p>
-      <form>
-        <label>
-          <input type="radio" name="option" id="option1" value="">
-          <span id="option1"></span>
-        </label>
-        <br>
-        <label>
-          <input type="radio" name="option" id="option2" value="">
-          <span id="option2"></span>
-        </label>
-        <br>
-        <label>
-          <input type="radio" name="option" id="option3" value="">
-          <span id="option3"></span>
-        </label>
-        <br>
-        <label>
-          <input type="radio" name="option" id="option4" value="">
-          <span id="option4"></span>
-        </label>
-        <br>
-        <button type="submit">提交</button>
-      </form>
-    </div>
-    <div id="result" style="display: none;"></div>
+      <label for="option1"><input type="radio" name="option" id="option1" value="1"><span id="option1-label"></span></label><br>
+      <label for="option2"><input type="radio" name="option" id="option2" value="2"><span id="option2-label"></span></label><br>
+      <label for="option3"><input type="radio" name="option" id="option3" value="3"><span id="option3-label"></span></label><br>
+      <label for="option4"><input type="radio" name="option" id="option4" value="4"><span id="option4-label"></span></label><br>
+      <input type="submit" value="提交">
+    </form>
+    <p id="result" style="display: none;"></p>
   </body>
 </html>
