@@ -82,3 +82,77 @@
     <p id="result" style="display: none;"></p>
   </body>
 </html>
+
+全對也顯示 你答對了 0 題，答對率為 0%。
+
+這個問題可能是因為 score 變數的初始值設為 0 所導致的。即使所有的問題都回答正確，score 的值也不會被更新，因此在顯示結果時仍然會顯示 0。為了解決這個問題，你可以將 score 的初始值設為 null，並在顯示結果時檢查 score 是否為 null，如果是，則將其設為 0。以下是修改後的 JavaScript 程式碼：
+
+// 讀取 JSON 檔案
+fetch('questions.json')
+  .then(response => response.json())
+  .then(data => {
+    const questions = data.questions;
+    let currentQuestion = 0;
+    let score = null; // 將初始值設為 null
+    
+    // 顯示一道問題
+    function showQuestion() {
+      // 打亂答案順序
+      const options = shuffle(questions[currentQuestion].options.slice());
+      
+      // 顯示問題描述和選項
+      document.getElementById('question').textContent = questions[currentQuestion].question;
+      document.getElementById('option1-label').textContent = options[0];
+      document.getElementById('option2-label').textContent = options[1];
+      document.getElementById('option3-label').textContent = options[2];
+      document.getElementById('option4-label').textContent = options[3];
+    }
+    
+    // 打亂陣列順序
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+    
+    // 檢查答案並顯示下一道問題
+    function checkAnswer(selectedOption) {
+      if (selectedOption === questions[currentQuestion].answer) {
+        if (score === null) { // 如果 score 的值為 null，則將其設為 0
+          score = 0;
+        }
+        score++;
+      }
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
+    }
+    
+    // 顯示答對率
+    function showResult() {
+      const result = document.getElementById('result');
+      if (score === null) { // 如果 score 的值為 null，則將其設為 0
+        score = 0;
+      }
+      result.textContent = `你答對了 ${score} 題，答對率為 ${Math.round(score / questions.length * 100)}%。`;
+      result.style.display = 'block';
+      document.getElementById('quiz').style.display = 'none';
+    }
+    
+    // 顯示第一道問題
+    showQuestion();
+    
+    // 處理提交表單事件
+    document.getElementById('quiz').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const selectedOption = document.querySelector('input[name="option"]:checked');
+      if (selectedOption) {
+        checkAnswer(selectedOption.value);
+      }
+    });
+  });
