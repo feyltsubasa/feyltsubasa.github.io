@@ -2,69 +2,85 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>多項選擇題</title>
-    <script>
-      // 讀取 JSON 檔案
-fetch('questions.json')
-  .then(response => response.json())
-  .then(data => {
-    const questions = data.questions;
-    let currentQuestion = 0;
-    let score = 0;
-
-    function showQuestion() {
-      const question = questions[currentQuestion];
-      document.getElementById('question').textContent = question.question;
-      document.getElementById('option1').textContent = question.options[0];
-      document.getElementById('option2').textContent = question.options[1];
-      document.getElementById('option3').textContent = question.options[2];
-      document.getElementById('option4').textContent = question.options[3];
-    }
-
-    function checkAnswer(selectedOption) {
-      const question = questions[currentQuestion];
-      const correctAnswer = question.answer;
-      const userAnswer = selectedOption;
-      if (userAnswer === correctAnswer) {
-        score++;
-      }
-      currentQuestion++;
-      if (currentQuestion < questions.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
-    }
-
-    function showResult() {
-      const result = document.getElementById('result');
-      const percentage = Math.round(score / questions.length * 100);
-      result.textContent = `你答對了 ${score} 題，答對率為 ${percentage}%。`;
-      result.style.display = 'block';
-      document.getElementById('quiz').style.display = 'none';
-    }
-
-    showQuestion();
-
-    document.getElementById('quiz').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const selectedOption = document.querySelector('input[name="option"]:checked');
-      if (selectedOption) {
-        checkAnswer(selectedOption.value);
-      }
-    });
-  });    </script>
+    <title>測驗</title>
   </head>
   <body>
-    <h1>多項選擇題</h1>
-    <form id="quiz">
-  <p id="question"></p>
-  <label><input type="radio" name="option" value="1"><span id="option1"></span></label><br>
-  <label><input type="radio" name="option" value="2"><span id="option2"></span></label><br>
-  <label><input type="radio" name="option" value="3"><span id="option3"></span></label><br>
-  <label><input type="radio" name="option" value="4"><span id="option4"></span></label><br>
-  <input type="submit" value="提交">
-</form>
-    <p id="result" style="display: none;"></p>
+    <h1>測驗</h1>
+    <div id="quiz">
+      <p id="question"></p>
+      <form>
+        <label>
+          <input type="radio" name="option" id="option1" value="0">
+          <span id="option1-label"></span>
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="option" id="option2" value="1">
+          <span id="option2-label"></span>
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="option" id="option3" value="2">
+          <span id="option3-label"></span>
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="option" id="option4" value="3">
+          <span id="option4-label"></span>
+        </label>
+        <br>
+        <button type="submit">下一題</button>
+      </form>
+    </div>
+    <div id="result"></div>
+    <script>
+      fetch('questions.json')
+        .then(response => response.json())
+        .then(data => {
+          const questions = data.questions;
+          let currentQuestion = 0;
+          let score = 0;
+
+          function showQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('question').textContent = question.question;
+            document.getElementById('option1-label').textContent = question.options[0];
+            document.getElementById('option2-label').textContent = question.options[1];
+            document.getElementById('option3-label').textContent = question.options[2];
+            document.getElementById('option4-label').textContent = question.options[3];
+          }
+
+          function checkAnswer(selectedOption) {
+            const question = questions[currentQuestion];
+            const correctAnswer = question.answer;
+            const userAnswer = parseInt(selectedOption);
+            if (userAnswer === correctAnswer) {
+              score++;
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+              showQuestion();
+            } else {
+              showResult();
+            }
+          }
+
+          function showResult() {
+            const result = document.getElementById('result');
+            const percentage = Math.round(score / questions.length * 100);
+            result.textContent = `你答對了 ${score} 題，答對率為 ${percentage}%。`;
+            result.style.display = 'block';
+            document.getElementById('quiz').style.display = 'none';
+          }
+
+          showQuestion();
+
+          document.getElementById('quiz').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const selectedOption = document.querySelector('input[name="option"]:checked').value;
+            checkAnswer(selectedOption);
+          });
+        });
+    </script>
   </body>
 </html>
