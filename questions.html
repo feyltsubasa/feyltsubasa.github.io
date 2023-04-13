@@ -22,27 +22,27 @@ fetch('questions.json')
     }
 
     function checkAnswer(selectedOption) {
-      const question = questions[currentQuestion];
-      const correctAnswer = parseInt(question.answer);
-      const userAnswer = parseInt(selectedOption);
-      if (userAnswer === correctAnswer) {
-        score++;
-      }
-      currentQuestion++;
-      if (currentQuestion < questions.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
-    }
+  const question = questions[currentQuestion];
+  const correctAnswer = parseInt(question.answer);
+  const userAnswer = parseInt(selectedOption);
+  if (userAnswer === correctAnswer) {
+    score++;
+  }
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+}
 
     function showResult() {
-      const result = document.getElementById('result');
-      const percentage = Math.round(score / questions.length * 100);
-      result.textContent = `你答對了 ${score} 題，答對率為 ${percentage}%。`;
-      result.style.display = 'block';
-      document.getElementById('quiz').style.display = 'none';
-    }
+  const result = document.getElementById('result');
+  const percentage = Math.round(score / questions.length * 100);
+  result.textContent = `你答對了 ${score} 題，答對率為 ${percentage}%。`;
+  result.style.display = 'block';
+  document.getElementById('quiz').style.display = 'none';
+}
 
     showQuestion();
 
