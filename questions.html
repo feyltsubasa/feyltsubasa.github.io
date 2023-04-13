@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>多項選擇題</title>
+    <script>
+      // 讀取 JSON 檔案
+      fetch('questions.json')
+        .then(response => response.json())
+        .then(data => {
+          const questions = data.questions;
+          let currentQuestion = 0;
+          let score = 0;
+          
+          // 顯示一道問題
+          function showQuestion() {
+            // 打亂答案順序
+            const options = shuffle(questions[currentQuestion].options.slice());
+            
+            // 顯示問題描述和選項
+            document.getElementById('question').textContent = questions[currentQuestion].question;
+            document.getElementById('option1').textContent = options[0];
+            document.getElementById('option2').textContent = options[1];
+            document.getElementById('option3').textContent = options[2];
+            document.getElementById('option4').textContent = options[3];
+          }
+          
+          // 打亂陣列順序
+          function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+          }
+          
+          // 檢查答案並顯示下一道問題
+          function checkAnswer(selectedOption) {
+            if (selectedOption === questions[currentQuestion].answer) {
+              score++;
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+              showQuestion();
+            } else {
+              showResult();
+            }
+          }
+          
+          // 顯示答對率
+          function showResult() {
+            const result = document.getElementById('result');
+            result.textContent = `你答對了 ${score} 題，答對率為 ${Math.round(score / questions.length * 100)}%。`;
+            result.style.display = 'block';
+            document.getElementById('quiz').style.display = 'none';
+          }
+          
+          // 顯示第一道問題
+          showQuestion();
+          
+          // 處理提交表單事件
+          document.getElementById('quiz').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const selectedOption = document.querySelector('input[name="option"]:checked').value;
+            checkAnswer(selectedOption);
+          });
+        });
+    </script>
+  </head>
+  <body>
+    <h1>多項選擇題</h1>
+    <div id="quiz">
+      <p id="question"></p>
+      <form>
+        <label>
+          <input type="radio" name="option" id="option1" value="">
+          <span id="option1"></span>
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="option" id="option2" value="">
+          <span id="option2"></span>
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="option" id="option3" value="">
+          <span id="option3"></span>
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="option" id="option4" value="">
+          <span id="option4"></span>
+        </label>
+        <br>
+        <button type="submit">提交</button>
+      </form>
+    </div>
+    <div id="result" style="display: none;"></div>
+  </body>
+</html>
