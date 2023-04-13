@@ -10,36 +10,20 @@ fetch('questions.json')
   .then(data => {
     const questions = data.questions;
     let currentQuestion = 0;
-    let score = null; // 將初始值設為 null
-    
-    // 顯示一道問題
+    let score = 0;
+
     function showQuestion() {
-      // 打亂答案順序
-      const options = shuffle(questions[currentQuestion].options.slice());
-      
-      // 顯示問題描述和選項
-      document.getElementById('question').textContent = questions[currentQuestion].question;
-      document.getElementById('option1-label').textContent = options[0];
-      document.getElementById('option2-label').textContent = options[1];
-      document.getElementById('option3-label').textContent = options[2];
-      document.getElementById('option4-label').textContent = options[3];
+      const question = questions[currentQuestion];
+      document.getElementById('question').textContent = question.question;
+      document.getElementById('option1').textContent = question.options[0];
+      document.getElementById('option2').textContent = question.options[1];
+      document.getElementById('option3').textContent = question.options[2];
+      document.getElementById('option4').textContent = question.options[3];
     }
-    
-    // 打亂陣列順序
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-    
-    // 檢查答案並顯示下一道問題
+
     function checkAnswer(selectedOption) {
-      if (selectedOption === questions[currentQuestion].answer) {
-        if (score === null) { // 如果 score 的值為 null，則將其設為 0
-          score = 0;
-        }
+      const question = questions[currentQuestion];
+      if (selectedOption === question.answer.toString()) {
         score++;
       }
       currentQuestion++;
@@ -49,22 +33,17 @@ fetch('questions.json')
         showResult();
       }
     }
-    
-    // 顯示答對率
+
     function showResult() {
       const result = document.getElementById('result');
-      if (score === null) { // 如果 score 的值為 null，則將其設為 0
-        score = 0;
-      }
-      result.textContent = `你答對了 ${score} 題，答對率為 ${Math.round(score / questions.length * 100)}%。`;
+      const percentage = Math.round(score / questions.length * 100);
+      result.textContent = `你答對了 ${score} 題，答對率為 ${percentage}%。`;
       result.style.display = 'block';
       document.getElementById('quiz').style.display = 'none';
     }
-    
-    // 顯示第一道問題
+
     showQuestion();
-    
-    // 處理提交表單事件
+
     document.getElementById('quiz').addEventListener('submit', (event) => {
       event.preventDefault();
       const selectedOption = document.querySelector('input[name="option"]:checked');
@@ -78,13 +57,13 @@ fetch('questions.json')
   <body>
     <h1>多項選擇題</h1>
     <form id="quiz">
-      <p id="question"></p>
-      <label for="option1"><input type="radio" name="option" id="option1" value="1"><span id="option1-label"></span></label><br>
-      <label for="option2"><input type="radio" name="option" id="option2" value="2"><span id="option2-label"></span></label><br>
-      <label for="option3"><input type="radio" name="option" id="option3" value="3"><span id="option3-label"></span></label><br>
-      <label for="option4"><input type="radio" name="option" id="option4" value="4"><span id="option4-label"></span></label><br>
-      <input type="submit" value="提交">
-    </form>
+  <p id="question"></p>
+  <label><input type="radio" name="option" value="1"><span id="option1"></span></label><br>
+  <label><input type="radio" name="option" value="2"><span id="option2"></span></label><br>
+  <label><input type="radio" name="option" value="3"><span id="option3"></span></label><br>
+  <label><input type="radio" name="option" value="4"><span id="option4"></span></label><br>
+  <input type="submit" value="提交">
+</form>
     <p id="result" style="display: none;"></p>
   </body>
 </html>
