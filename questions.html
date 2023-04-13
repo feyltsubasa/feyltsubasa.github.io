@@ -23,7 +23,9 @@ fetch('questions.json')
 
     function checkAnswer(selectedOption) {
       const question = questions[currentQuestion];
-      if (selectedOption === question.answer.toString()) {
+      const correctAnswer = parseInt(question.answer);
+      const userAnswer = parseInt(selectedOption);
+      if (userAnswer === correctAnswer) {
         score++;
       }
       currentQuestion++;
