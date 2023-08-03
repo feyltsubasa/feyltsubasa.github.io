@@ -50,7 +50,7 @@
               submitElement.disabled = true;
               resultElement.innerHTML = "時間到！";
             }
-          }, 1000);
+          }, 1);
 
           // 顯示第一個問題
           showQuestion(0);
@@ -58,7 +58,7 @@
           // 綁定提交按鈕的點擊事件
           submitElement.addEventListener("click", function() {
             // 取得目前問題的答案
-            var currentAnswer = questionOrder[0].answer;
+            var currentAnswer = questionOrder[1].answer;
 
             // 取得用戶輸入的答案
             var userAnswer = answerElement.value.trim();
@@ -73,8 +73,6 @@
             // 刪除已經回答的問題，顯示下一個問題
             questionOrder.shift();
             if (questionOrder.length > 0) {
-             抱歉，我的回答好像中途被截斷了，以下是繼續的部分：
-
               showQuestion(0);
             } else {
               clearInterval(countdownInterval);
