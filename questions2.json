@@ -1,0 +1,19 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "______ is the capital of France.",
+      "answer": "Paris"
+    },
+    {
+      "id": 2,
+      "question": "The largest planet in our solar system is ______.",
+      "answer": "Jupiter"
+    },
+    {
+      "id": 3,
+      "question": "______ is the smallest country in the world.",
+      "answer": "Vatican City"
+    }
+  ]
+}
