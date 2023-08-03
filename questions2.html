@@ -45,7 +45,7 @@
             countdownElement.innerHTML = "剩餘時間：" + minutes + "分" + seconds + "秒";
 
             // 如果時間到了，停止倒數計時器
-            if (distance < 0) {
+            if (countdownTime < 0) {
               clearInterval(countdownInterval);
               submitElement.disabled = true;
               resultElement.innerHTML = "時間到！";
