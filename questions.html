@@ -4,35 +4,7 @@
     <meta charset="UTF-8">
     <title>多項選擇題</title>
     <script>
-		 // 設定倒數時間為三分鐘，單位為毫秒
-      var countdownTime = 3 * 60 * 1000;
-
-      // 取得倒數計時器的 DOM 元素
-      var countdownElement = document.getElementById("countdown");
-
-      // 開始倒數計時器
-      var countdownInterval = setInterval(function() {
-        // 取得目前時間
-        var now = new Date().getTime();
-
-        // 計算剩餘時間
-        var distance = countdownTime - now;
-
-        // 轉換剩餘時間為分鐘和秒數
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // 更新倒數計時器顯示的內容
-        countdownElement.innerHTML = "剩餘時間：" + minutes + "分" + seconds + "秒";
-
-        // 如果時間到了，停止倒數計時器
-        if (distance < 0) {
-          clearInterval(countdownInterval);
-          countdownElement.innerHTML = "時間到！";
-		  showResult()
-        }
-      }, 1000);
-		
+	
 		
 		
       // 讀取 JSON 檔案
@@ -108,7 +80,7 @@ document.getElementById('option4').value=options[3];
   <body>
 	<div width="50%">
     <h1 align="center">多項選擇題</h1> 
-		<H2 align="center" id="countdown"><H2>
+		<h2 align="center" id="countdown"></h2>
     <form id="quiz">
       <p id="question"></p>
       <label for="option1"><input type="radio" name="option" id="option1" value="1"><span id="option1-label"></span></label><br>
@@ -119,5 +91,35 @@ document.getElementById('option4').value=options[3];
     </form>
     <p id="result" style="display: none;"></p>
 	</div>
+			<script>
+				 // 設定倒數時間為三分鐘，單位為毫秒
+      var countdownTime = 3 * 60 * 1000;
+
+      // 取得倒數計時器的 DOM 元素
+      var countdownElement = document.getElementById("countdown");
+
+      // 開始倒數計時器
+      var countdownInterval = setInterval(function() {
+        // 取得目前時間
+        var now = new Date().getTime();
+
+        // 計算剩餘時間
+        var distance = countdownTime - now;
+
+        // 轉換剩餘時間為分鐘和秒數
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // 更新倒數計時器顯示的內容
+        countdownElement.innerHTML = "剩餘時間：" + minutes + "分" + seconds + "秒";
+
+        // 如果時間到了，停止倒數計時器
+        if (distance < 0) {
+          clearInterval(countdownInterval);
+          countdownElement.innerHTML = "時間到！";
+		  showResult()
+        }
+      }, 1000);
+			</script>
   </body>
 </html>
