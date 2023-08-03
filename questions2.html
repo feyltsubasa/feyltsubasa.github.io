@@ -31,20 +31,21 @@
 
           // 開始倒數計時器
           var countdownInterval = setInterval(function() {
-  
+            // 取得目前時間
+            var now = new Date().getTime();
 
             // 計算剩餘時間
-            var distance =  countdownTime-1000;
+            var distance = countdownTime - 1000;
 
             // 轉換剩餘時間為分鐘和秒數
-            var minutes = Math.floor((countdownTime % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((countdownTime % (1000 * 60)) / 1000);
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             // 更新倒數計時器顯示的內容
             countdownElement.innerHTML = "剩餘時間：" + minutes + "分" + seconds + "秒";
 
             // 如果時間到了，停止倒數計時器
-            if (countdownTime < 0) {
+            if (distance < 0) {
               clearInterval(countdownInterval);
               submitElement.disabled = true;
               resultElement.innerHTML = "時間到！";
@@ -57,7 +58,7 @@
           // 綁定提交按鈕的點擊事件
           submitElement.addEventListener("click", function() {
             // 取得目前問題的答案
-            var currentAnswer = questionOrder[1].answer;
+            var currentAnswer = questionOrder[0].answer;
 
             // 取得用戶輸入的答案
             var userAnswer = answerElement.value.trim();
