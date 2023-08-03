@@ -35,11 +35,11 @@
             var now = new Date().getTime();
 
             // 計算剩餘時間
-            var distance = countdownTime - 1000;
+            var countdownTime = countdownTime - 1000;
 
             // 轉換剩餘時間為分鐘和秒數
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            var minutes = Math.floor((countdownTime % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((countdownTime % (1000 * 60)) / 1000);
 
             // 更新倒數計時器顯示的內容
             countdownElement.innerHTML = "剩餘時間：" + minutes + "分" + seconds + "秒";
