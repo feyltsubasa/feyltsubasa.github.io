@@ -4,7 +4,6 @@
     <title>填空題答題</title>
   </head>
   <body>
-<script src="questions2.json"></script>
     <h1>填空題答題</h1>
     <p id="question"></p>
     <input type="text" id="answer" placeholder="請輸入答案">
@@ -78,36 +77,32 @@
             } else {
               clearInterval(countdownInterval);
               submitElement.disabled = true;
-              resultElement.innerHTML = "你已經回答完所有問題了！";
+              resultElement.innerHTML = "恭喜您完成了所有問題！";
             }
 
-            // 清空輸入框和提示信息
+            // 清空輸入框
             answerElement.value = "";
-            resultElement.style.display = "none";
           });
 
-          // 隨機打亂問題順序的函數
+          // 顯示指定序號的問題
+          function showQuestion(index) {
+            var question = questionOrder[index];
+            questionElement.innerHTML = question.text;
+          }
+
+          // 打亂陣列的順序
           function shuffleArray(array) {
-            var currentIndex = array.length;
-對不起，似乎我在上一個回答中意外地刪除了一部分程式碼。以下是完整的 `shuffleArray` 函數：
-
-```js
-function shuffleArray(array) {
-  var currentIndex = array.length;
-  var temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
+            var currentIndex = array.length, temporaryValue, randomIndex;
+            while (0 !== currentIndex) {
+              randomIndex = Math.floor(Math.random() * currentIndex);
+              currentIndex -= 1;
+              temporaryValue = array[currentIndex];
+              array[currentIndex] = array[randomIndex];
+              array[randomIndex] = temporaryValue;
+            }
+            return array;
+          }
+        });
+    </script>
+  </body>
+</html>
