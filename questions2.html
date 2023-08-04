@@ -18,7 +18,10 @@
         .then(data => {
           // 解析 JSON 文件，打亂問題順序
           var questionOrder = shuffleArray(data.questions);
-
+		  
+		  
+		  //score
+		  var score=0
           // 設定倒數時間為三分鐘，單位為毫秒
           var countdownTime = 3 * 60 
 
@@ -64,24 +67,31 @@
             // 比對答案，顯示提示
             if (userAnswer === currentAnswer) {
               resultElement.innerHTML = "答對了！";
+				score+=1
             } else {
               resultElement.innerHTML = "答錯了，正確答案是：" + currentAnswer;
             }
 
-            // 刪除已經回答的問題，顯示下一個問題
-            questionOrder.shift();
-            if (questionOrder.length > 0) {
-              showQuestion(0);
-            } else {
-              clearInterval(countdownInterval);
-              submitElement.disabled = true;
-              resultElement.innerHTML = "恭喜您完成了所有問題！";
-            }
+            
 
             // 清空輸入框
             answerElement.value = "";
+			  
+			  // 刪除已經回答的問題，顯示下一個問題
+            questionOrder.shift();
+            if (questionOrder.length > 0) {
+              showQuestion(0);
+            } if(questionOrder.length = 0){
+				clearInterval(countdownInterval);
+              answerElement.disabled = true;
+				submitElement.innerHTML="finish"
+			}
+			  else {
+              
+              resultElement.innerHTML = "恭喜您完成了所有問題！你答對了"+score+"題!";
+            }
           });
-
+	
           // 顯示指定序號的問題
           function showQuestion(index) {
             var question = questionOrder[index];
