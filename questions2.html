@@ -4,13 +4,14 @@
     <title>填空題答題</title>
   </head>
   <body>
-    <h1>填空題答題</h1>
+	  <div width=70>
+    <h1 align="center">填空題答題</h1>
     <p id="question"></p>
     <input type="text" id="answer" placeholder="請輸入答案">
     <button id="submit">提交答案</button>
     <p id="result"></p>
 	  <p id="result2"></p>
-    <p id="countdown">剩餘時間：180</p>
+    <p id="countdown">剩餘時間：60</p>
 
     <script>
       // 載入填空題數據
@@ -51,7 +52,8 @@
             if (countdownTime <= 0) {
               clearInterval(countdownInterval);
               submitElement.disabled = true;
-              resultElement.innerHTML = "時間到！";
+				answerElement.disabled = true;
+              resultElement.innerHTML = "時間到！你答對了"+score+"題!";
             }
           }, 1000);
 
@@ -94,7 +96,7 @@
           // 顯示指定序號的問題
           function showQuestion(index) {
             var question = questionOrder[index];
-            questionElement.innerHTML = question.text;
+            questionElement.innerHTML = questionOrder[0].question;
           }
 
           // 打亂陣列的順序
@@ -111,5 +113,6 @@
           }
         });
     </script>
+		   </div>
   </body>
 </html>
