@@ -81,15 +81,17 @@
             questionOrder.shift();
             if (questionOrder.length > 0) {
               showQuestion(0);
-            } if(questionOrder.length = 0){
+            } else if(questionOrder.length = 0){
 				clearInterval(countdownInterval);
               answerElement.disabled = true;
 				submitElement.innerHTML="finish"
-			}
-			  else {
+			}else if(questionOrder.length < 0)  {
               
               resultElement.innerHTML = "恭喜您完成了所有問題！你答對了"+score+"題!";
-            }
+            }else if(countdownTime <= 0){
+				resultElement.innerHTML = "時間到了！你答對了"+score+"題!"
+				
+			}
           });
 	
           // 顯示指定序號的問題
