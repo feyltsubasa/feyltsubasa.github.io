@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>填空題問題庫</title>
+</head>
+<body>
+  <h1>填空題問題庫</h1>
+
+  <form id="quiz-form">
+    <div>
+      <label for="question">問題：</label>
+      <p id="question"></p>
+    </div>
+    <div>
+      <label for="answer">答案：</label>
+      <input type="text" id="answer" required>
+    </div>
+    <button type="submit">提交</button>
+  </form>
+
+  <div id="result"></div>
+  <div id="score"></div>
+
+	<script>
+	// 獲取填空題問題庫
+fetch('quiz.json')
+  .then(response => response.json())
+  .then(quiz => {
+    // 將問題順序隨機打亂
+    const shuffledQuiz = quiz.questions.sort(() => Math.random() - 0.5);
+
+    // 取得HTML元素
+    const quizForm = document.querySelector('#quiz-form');
+    const questionEl = document.querySelector('#question');
+    const answerEl = document.querySelector('#answer');
+    const resultEl = document.querySelector('#result');
+    const scoreEl = document.querySelector('#score');
+
+    let currentQuestionIndex = 0;
+    let correctAnswers = 0;
+
+    // 顯示問題和答案框
+    function showQuestion() {
+      const currentQuestion = shuffledQuiz[currentQuestionIndex];
+      questionEl.textContent = currentQuestion.question;
+    }
+
+    // 設置答案驗證
+    function checkAnswer() {
+      const currentQuestion = shuffledQuiz[currentQuestionIndex];
+      const userAnswer = answerEl.value.trim().toLowerCase();
+      const correctAnswer = currentQuestion.correctAnswer.toLowerCase();
+
+      if (userAnswer === correctAnswer) {
+        resultEl.textContent = '答對了！';
+        correctAnswers++;
+      } else {
+        resultEl.textContent = `答錯了，正確答案是：${currentQuestion.correctAnswer}`;
+      }
+
+      answerEl.value = '';
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex < shuffledQuiz.length) {
+        showQuestion();
+      } else {
+        // 顯示最終答對率
+        const score = Math.round((correctAnswers / shuffledQuiz.length) * 100);
+        scoreEl.textContent = `你的答對率是：${score}%`;
+        quizForm.style.display = 'none';
+      }
+    }
+
+    // 設置表單提交
+    quizForm.addEventListener('submit', event => {
+      event.preventDefault();
+      checkAnswer();
+    });
+
+    // 開始顯示問題
+    showQuestion();
+
+    // 設置倒數計時器
+    let timeLeft = 60;
+    const countdownEl = document.createElement('p');
+    countdownEl.textContent = `剩餘時間：${timeLeft} 秒`;
+    document.body.appendChild(countdownEl);
+
+    const timerId = setInterval(() => {
+      timeLeft--;
+      countdownEl.textContent = `剩餘時間：${timeLeft} 秒`;
+
+      if (timeLeft === 0) {
+        clearInterval(timerId);
+        checkAnswer();
+      }
+    }, 1000);
+  })
+  .catch(error => console.error(error));
+	</script>
+</body>
+</html>
