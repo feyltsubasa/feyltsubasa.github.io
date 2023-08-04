@@ -69,7 +69,7 @@
             var userAnswer = answerElement.value.trim();
 
             // 比對答案，顯示提示
-            if (userAnswer === currentAnswer) {
+            if (userAnswer.toUpperCase() === currentAnswer.toUpperCase()) {
               resultElement.innerHTML = "答對了！";
 				score+=1
             } else {
