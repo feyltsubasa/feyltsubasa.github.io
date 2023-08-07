@@ -140,7 +140,11 @@ document.getElementById("option4").disabled = true;
             if (countdownTime <= 0) {
               clearInterval(countdownInterval);
               document.getElementById("submit").disabled = true;
-               document.getElementById("result").innerHTML = "時間到！你答對了"+score+"題!";
+				document.getElementById("option1").disabled = true;
+document.getElementById("option2").disabled = true;
+document.getElementById("option3").disabled = true;
+document.getElementById("option4").disabled = true;
+               document.getElementById("result2").innerHTML = "時間到！你答對了"+score+"題!";
             }
           }, 1000);
 
