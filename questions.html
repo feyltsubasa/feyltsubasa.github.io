@@ -56,6 +56,7 @@ document.getElementById('option4').value=options[3];
           
           // 檢查答案並顯示下一道問題
           function checkAnswer(selectedOption) {
+			  
             if (selectedOption === questions[currentQuestion].answer) {
               score++;
 				document.getElementById("result").innerHTML = "答對了！";
@@ -68,6 +69,12 @@ document.getElementById('option4').value=options[3];
             } else {
               showResult();
             }
+			  
+			  document.getElementById("option1").checked = false;
+document.getElementById("option2").checked = false;
+document.getElementById("option3").checked = false;
+document.getElementById("option4").checked = false;
+
           }
           
           // 顯示答對率
