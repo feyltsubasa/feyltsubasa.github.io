@@ -5,7 +5,7 @@
     <title>多項選擇題</title>
     <script>
 	
-		
+		var score = 0;
 		
       // 讀取 JSON 檔案
       fetch('questions.json')
@@ -13,7 +13,7 @@
         .then(data => {
           const questions = data.questions;
           let currentQuestion = 0;
-          let score = 0;
+          
           
           // 顯示一道問題
           function showQuestion() {
