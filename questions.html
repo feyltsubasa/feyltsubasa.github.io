@@ -58,7 +58,10 @@ document.getElementById('option4').value=options[3];
           function checkAnswer(selectedOption) {
             if (selectedOption === questions[currentQuestion].answer) {
               score++;
-            }
+				document.getElementById("result").innerHTML = "答對了！";
+            }else{
+				document.getElementById("result").innerHTML = "答錯了，正確答案是：" + currentAnswer;
+			}
             currentQuestion++;
             if (currentQuestion < questions.length) {
               showQuestion();
@@ -71,7 +74,7 @@ document.getElementById('option4').value=options[3];
           function showResult() {
             const result = document.getElementById('result');
 			document.getElementById("submit").disabled = true;
-              resultElement.innerHTML = "時間到！你答對了"+score+"題!";
+              document.getElementById("result2").innerHTML.innerHTML = "時間到！你答對了"+score+"題!";
             document.getElementById('quiz').style.display = 'none';
           }
           
@@ -119,13 +122,13 @@ document.getElementById('option4').value=options[3];
     
 
             // 更新倒數計時器顯示的內容
-            countdownElement.innerHTML = "剩餘時間：" + countdownTime;
+            document.getElementById('countdownElement').innerHTML = "剩餘時間：" + countdownTime;
 
             // 如果時間到了，停止倒數計時器
             if (countdownTime <= 0) {
               clearInterval(countdownInterval);
               document.getElementById("submit").disabled = true;
-              resultElement.innerHTML = "時間到！你答對了"+score+"題!";
+               document.getElementById("result").innerHTML = "時間到！你答對了"+score+"題!";
             }
           }, 1000);
 
