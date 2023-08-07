@@ -80,6 +80,10 @@ document.getElementById("option4").checked = false;
           // 顯示答對率
           function showResult() {
             const result = document.getElementById('result');
+			    document.getElementById("option1").disabled = true;
+document.getElementById("option2").disabled = true;
+document.getElementById("option3").disabled = true;
+document.getElementById("option4").disabled = true;
 			document.getElementById("submit").disabled = true;
               document.getElementById("result2").innerHTML = "恭喜您完成了所有問題！你答對了"+score+"題!";
 			   clearInterval(countdownInterval);
