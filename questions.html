@@ -74,8 +74,9 @@ document.getElementById('option4').value=options[3];
           function showResult() {
             const result = document.getElementById('result');
 			document.getElementById("submit").disabled = true;
-              document.getElementById("result2").innerHTML.innerHTML = "時間到！你答對了"+score+"題!";
-            document.getElementById('quiz').style.display = 'none';
+              document.getElementById("result2").innerHTML = "恭喜您完成了所有問題！你答對了"+score+"題!";
+			   clearInterval(countdownInterval);
+           
           }
           
           // 顯示第一道問題
