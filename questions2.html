@@ -24,8 +24,7 @@
 		  
 		  //score
 		  var score=0
-          // 設定倒數時間為三分鐘，單位為毫秒
-          var countdownTime = 60 
+          
 
           // 取得 DOM 元素
           var questionElement = document.getElementById("question");
@@ -35,6 +34,8 @@
 		  var result2Element = document.getElementById("result2");
           var countdownElement = document.getElementById("countdown");
 
+		  // 設定倒數時間為三分鐘，單位為毫秒
+          var countdownTime = 60 
           // 開始倒數計時器
           var countdownInterval = setInterval(function() {
             // 取得目前時間

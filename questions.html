@@ -32,8 +32,20 @@ document.getElementById('option3').value=options[2];
 
 document.getElementById('option4').value=options[3];
           }
+		   // 打亂Q陣列的順序
+          function shuffleArray(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+            while (0 !== currentIndex) {
+              randomIndex = Math.floor(Math.random() * currentIndex);
+              currentIndex -= 1;
+              temporaryValue = array[currentIndex];
+              array[currentIndex] = array[randomIndex];
+              array[randomIndex] = temporaryValue;
+            }
+            return array;
+          }
           
-          // 打亂陣列順序
+          // 打亂A陣列順序
           function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
               const j = Math.floor(Math.random() * (i + 1));
@@ -58,12 +70,13 @@ document.getElementById('option4').value=options[3];
           // 顯示答對率
           function showResult() {
             const result = document.getElementById('result');
-            result.textContent = `你答對了 ${score} 題，答對率為 ${Math.round(score / questions.length * 100)}%。`;
-            result.style.display = 'block';
+			document.getElementById("submit").disabled = true;
+              resultElement.innerHTML = "時間到！你答對了"+score+"題!";
             document.getElementById('quiz').style.display = 'none';
           }
           
           // 顯示第一道問題
+		  shuffleArray(data.questions);
           showQuestion();
           
           // 處理提交表單事件
@@ -80,26 +93,21 @@ document.getElementById('option4').value=options[3];
   <body>
 	<div width="50%">
     <h1 align="center">多項選擇題</h1> 
-		<h2 align="center" id="countdown">剩餘時間：181秒</h2>
+		
     <form id="quiz">
       <p id="question"></p>
       <label for="option1"><input type="radio" name="option" id="option1" value="1"><span id="option1-label"></span></label><br>
       <label for="option2"><input type="radio" name="option" id="option2" value="2"><span id="option2-label"></span></label><br>
       <label for="option3"><input type="radio" name="option" id="option3" value="3"><span id="option3-label"></span></label><br>
       <label for="option4"><input type="radio" name="option" id="option4" value="4"><span id="option4-label"></span></label><br>
-      <input type="submit" value="提交">
+      <input id="submit" type="submit" value="提交">
     </form>
-    <p id="result" style="display: none;"></p>
-	</div>
-			<script>
-				 // 設定倒數時間為三分鐘，單位為毫秒
-       // 設定倒數時間為三分鐘，單位為毫秒
-          var countdownTime = 3 * 60 
-
-          // 取得 DOM 元素
-         
-          var countdownElement = document.getElementById("countdown");
-
+    <p id="result"></p>
+	  <p id="result2"></p>
+    <p id="countdown">剩餘時間：60</p>
+		<script>
+		  // 設定倒數時間為三分鐘，單位為毫秒
+          var countdownTime = 60 
           // 開始倒數計時器
           var countdownInterval = setInterval(function() {
             // 取得目前時間
@@ -116,11 +124,13 @@ document.getElementById('option4').value=options[3];
             // 如果時間到了，停止倒數計時器
             if (countdownTime <= 0) {
               clearInterval(countdownInterval);
-              submitElement.disabled = true;
-              resultElement.innerHTML = "時間到！";
-				showResult()
+              document.getElementById("submit").disabled = true;
+              resultElement.innerHTML = "時間到！你答對了"+score+"題!";
             }
           }, 1000);
-			</script>
+
+		</script>
+	</div>
+			
   </body>
 </html>
