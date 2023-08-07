@@ -60,7 +60,7 @@ document.getElementById('option4').value=options[3];
               score++;
 				document.getElementById("result").innerHTML = "答對了！";
             }else{
-				document.getElementById("result").innerHTML = "答錯了，正確答案是：" + currentAnswer;
+				document.getElementById("result").innerHTML = "答錯了，正確答案是：" + questions[currentQuestion].answer;
 			}
             currentQuestion++;
             if (currentQuestion < questions.length) {
@@ -122,7 +122,7 @@ document.getElementById('option4').value=options[3];
     
 
             // 更新倒數計時器顯示的內容
-            document.getElementById('countdownElement').innerHTML = "剩餘時間：" + countdownTime;
+            document.getElementById('countdown').innerHTML = "剩餘時間：" + countdownTime;
 
             // 如果時間到了，停止倒數計時器
             if (countdownTime <= 0) {
